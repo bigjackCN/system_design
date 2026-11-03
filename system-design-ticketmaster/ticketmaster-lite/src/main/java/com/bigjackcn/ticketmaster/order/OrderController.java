@@ -1,0 +1,4 @@
+package com.bigjackcn.ticketmaster.order;
+
+public class OrderController {
+}

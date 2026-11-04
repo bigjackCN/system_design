@@ -1,4 +1,4 @@
 package com.bigjackcn.ticketmaster.reservation.dto;
 
-public class CreateReservationRequest {
+public record CreateReservationRequest(Long eventId, int quantity) {
 }

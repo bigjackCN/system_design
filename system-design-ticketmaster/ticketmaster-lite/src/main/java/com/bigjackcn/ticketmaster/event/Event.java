@@ -15,11 +15,15 @@ public class Event {
     private String venue;
     private Instant startAt;
 
-    public long getId() {
+    private long priceCents;
+    private String currency;
+    private int capacity;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,5 +49,29 @@ public class Event {
 
     public void setStartAt(Instant startAt) {
         this.startAt = startAt;
+    }
+
+    public long getPriceCents() {
+        return priceCents;
+    }
+
+    public void setPriceCents(long priceCents) {
+        this.priceCents = priceCents;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 }

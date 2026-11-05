@@ -1,5 +1,6 @@
 package com.bigjackcn.ticketmaster.reservation;
 
+import com.bigjackcn.ticketmaster.reservation.dto.ConfirmReservationResponse;
 import com.bigjackcn.ticketmaster.reservation.dto.CreateReservationRequest;
 import com.bigjackcn.ticketmaster.reservation.dto.CreateReservationResponse;
 import org.springframework.http.HttpStatus;
@@ -18,5 +19,12 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.CREATED)
     public CreateReservationResponse create(@RequestBody CreateReservationRequest request) {
         return reservationService.create(request.eventId(), request.quantity());
+    }
+
+    @PostMapping("/{id}/confirm")
+    public ConfirmReservationResponse confirm(
+            @PathVariable Long id,
+            @RequestHeader("Idempotency-Key") String idempotencyKey) {
+        return reservationService.confirm(id, idempotencyKey);
     }
 }

@@ -41,7 +41,7 @@ public class DataSeeder implements CommandLineRunner {
             Ticket ticket = new Ticket();
             ticket.setEventId(event.getId());
             ticket.setStatus(TicketStatus.AVAILABLE);
-            ticket.setUpdateAt(Instant.now());
+            ticket.setUpdatedAt(Instant.now());
             ticketRepository.save(ticket);
         }
 

@@ -30,6 +30,9 @@ public class Reservation {
     @Column(nullable = false)
     private Instant createdAt;
 
+    @Column(nullable = false)
+    private long totalCents;
+
     public Long getId() {
         return id;
     }
@@ -84,5 +87,13 @@ public class Reservation {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public long getTotalCents() {
+        return totalCents;
+    }
+
+    public void setTotalCents(long totalCents) {
+        this.totalCents = totalCents;
     }
 }

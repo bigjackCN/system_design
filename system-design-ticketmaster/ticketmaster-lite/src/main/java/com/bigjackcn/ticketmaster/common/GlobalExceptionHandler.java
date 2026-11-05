@@ -1,6 +1,9 @@
 package com.bigjackcn.ticketmaster.common;
 
 import com.bigjackcn.ticketmaster.reservation.NotEnoughTicketsException;
+import com.bigjackcn.ticketmaster.reservation.ReservationExpiredException;
+import com.bigjackcn.ticketmaster.reservation.ReservationNotActiveException;
+import com.bigjackcn.ticketmaster.reservation.ReservationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +35,24 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleUnreadable(HttpMessageNotReadableException ex) {
         return new ErrorResponse("INVALID_REQUEST", "Malformed request body", null);
+    }
+
+    @ExceptionHandler(ReservationNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleReservationNotFound(ReservationNotFoundException ex) {
+        return new ErrorResponse("RESERVATION_NOT_FOUND", ex.getMessage(), null);
+    }
+
+    @ExceptionHandler(ReservationNotActiveException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleReservationNotActive(ReservationNotActiveException ex) {
+        return new ErrorResponse("RESERVATION_NOT_ACTIVE", ex.getMessage(), null);
+    }
+
+    @ExceptionHandler(ReservationExpiredException.class)
+    @ResponseStatus(HttpStatus.GONE)
+    public ErrorResponse handleReservationExpired(ReservationExpiredException ex) {
+        return new ErrorResponse("RESERVATION_EXPIRED", ex.getMessage(), null);
     }
 
     @ExceptionHandler(Exception.class)

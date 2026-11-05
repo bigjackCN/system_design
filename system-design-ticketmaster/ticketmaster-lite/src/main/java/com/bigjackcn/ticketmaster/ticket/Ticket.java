@@ -23,7 +23,7 @@ public class Ticket {
     @Version
     private Long version;
 
-    private Instant updateAt;
+    private Instant updatedAt;
 
     public Long getId() {
         return id;
@@ -65,11 +65,11 @@ public class Ticket {
         this.version = version;
     }
 
-    public Instant getUpdateAt() {
-        return updateAt;
+    public Instant getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdateAt(Instant updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

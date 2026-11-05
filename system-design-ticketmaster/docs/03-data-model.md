@@ -12,6 +12,9 @@ Phase 1 uses PostgreSQL. Seat-level selection is out of scope; tickets are group
 | name         | VARCHAR(255) |                                |
 | description  | TEXT         |                                |
 | start_at     | TIMESTAMPTZ  |                                |
+| price_cents  | BIGINT       | Phase 1 GA simplification      |
+| currency     | CHAR(3)      | Phase 1 GA simplification      |
+| capacity     | INT          | Phase 1 GA simplification      |
 | status       | VARCHAR(32)  | DRAFT, PUBLISHED, CANCELLED    |
 | created_at   | TIMESTAMPTZ  |                                |
 
@@ -62,6 +65,10 @@ Phase 1 uses PostgreSQL. Seat-level selection is out of scope; tickets are group
 Indexes:
 - `(event_id, tier_id, status)` — fast availability lookup
 - `(reservation_id)` — release flow
+
+> Phase 1 simplification: one Event = one GA tier. Tier fields
+> (`price_cents`, `currency`, `capacity`) live on `events`.
+> A dedicated `ticket_tiers` table is a future extension.
 
 ### reservations
 | Column      | Type         | Notes                                          |
